@@ -20,10 +20,15 @@ class Main extends React.Component {
         const response = await axios.get('/api/habits');
         const habits = response.data;
         this.setState({habits: habits});
-    }
+    };
 
     // create method
     // delete method
+    async delete(habit) {
+        await axios.delete(`/api/habits/${habit.id}`);
+        const habits = this.state.habits.filter(_habit => _habit.id !== habit.id);
+        this.setState({ habits });
+    };
     // update method
 
     render() {
@@ -37,6 +42,7 @@ class Main extends React.Component {
                             <div key={habit.id}>
                                 <div>
                                     {habit.habitName}
+                                    <button onClick={ () => this.delete(habit) }> x </button>
                                 </div>
                             </div>
                         )
