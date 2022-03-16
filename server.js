@@ -7,10 +7,20 @@ const path = require('path');
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 app.get('/', (req, res)=> res.sendFile(path.join(__dirname, 'index.html')));
 
-
+app.use(express.static(path.join(__dirname, 'public'))); // do I need this? 
 
 // ------ ROUTES HERE -------------
 
+// GET API route to view all habits
+app.get('/api/habits', async(req, res, next) => {
+    try{
+        const habits = await Habit.findAll();
+        res.send(habits);
+    }
+    catch(error){
+        next(error)
+    }
+});
 
 
 const init = async () => {

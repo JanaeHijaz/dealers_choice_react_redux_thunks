@@ -37,7 +37,6 @@ const syncAndSeed = async () => {
         await Habit.create({habitName: 'Read for 30 Minutes (not online!)', category: 'General', completed: false});
 };
    
-
 module.exports = {
     Habit,
     syncAndSeed
