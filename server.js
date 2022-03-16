@@ -1,4 +1,3 @@
-
 const { Habit, syncAndSeed } = require('./db/index')
 const express = require('express');
 const app = express();
@@ -22,10 +21,46 @@ app.get('/api/habits', async(req, res, next) => {
     }
 });
 
+// POST API route to enter a new habit
+
+app.post('/api/habits', async(req, res, next) => {
+    try{
+        res.send(await Habit.create(req.body));
+    }
+    catch(error){
+        next(error)
+    }
+});
+
+// PUT API route to update/modify a habit (if completed) 
+
+app.put('/api/habits/:id', async(req, res, next) => {
+    try {
+        const habit = await Habit.findByPk(req.params.id);
+        await habit.update(req.body);
+        res.send(habit);
+    }
+    catch(error){
+        next(error)
+    }
+});
+
+// DELETE API route to destroy a habit
+app.delete('/api/habits/:id', async(req, res, next) => {
+    try{
+        const habit = await Habit.findByPk(req.params.id);
+        await habit.destroy();
+        res.sendStatus(204)
+    }
+    catch(error){
+        next(error)
+    }
+});
+
 
 const init = async () => {
     await syncAndSeed();
-    const port = process.env.PORT || 3000;
+    const port = process.env.PORT || 5050;
     app.listen(port, ()=> console.log(`listening on port ${port}`));
 }
 
