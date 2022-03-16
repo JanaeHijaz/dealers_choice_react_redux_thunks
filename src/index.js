@@ -13,9 +13,10 @@ class Main extends React.Component {
     constructor() {
      super()
      this.state = {
-         habits: []
+         habits: [],
+         //name: ''
      };
-
+     this.create = this.create.bind(this);
     }
 
     async componentDidMount(){
@@ -25,6 +26,13 @@ class Main extends React.Component {
     };
 
     // create method
+    async create(){
+        const response = await axios.post('/api/habits');
+        const newHabit = response.data;
+        const habits = [...this.state.habits, newHabit];
+        console.log(this.state)
+        this.setState({ habits });
+    }
     // delete method
     async delete(habit) {
         await axios.delete(`/api/habits/${habit.id}`);
@@ -37,7 +45,7 @@ class Main extends React.Component {
         return (
             <div id='main'>
                 <h1>Self Care Habit Tracker</h1>
-                <CreateHabit />
+                <CreateHabit create={this.create} name={this.state.name} habits={this.state.habits}/>
                 <div>
                     {this.state.habits.map(habit => {
                     return (
