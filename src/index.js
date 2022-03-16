@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import store from './store';
 import axios from 'axios';
 
+import CreateHabit from './CreateHabit'
+
 
 // set up Main component and methods
 
@@ -35,23 +37,22 @@ class Main extends React.Component {
         return (
             <div id='main'>
                 <h1>Self Care Habit Tracker</h1>
-                <button> Add New Habit</button>
+                <CreateHabit />
                 <div>
                     {this.state.habits.map(habit => {
-                        return (
-                            <div key={habit.id}>
-                                <div>
-                                    {habit.habitName}
-                                    <button onClick={ () => this.delete(habit) }> x </button>
-                                </div>
+                    return (
+                        <div key={habit.id}>
+                            <div>
+                            {habit.habitName}
+                            <button onClick={ () => this.delete(habit) }> x </button>
                             </div>
-                        )
-                    })}
+                        </div>
+                    )
+                    })} 
                 </div>
             </div>
         )
     }
-
 }
 
 
