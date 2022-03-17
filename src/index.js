@@ -5,6 +5,7 @@ import store from './store';
 import axios from 'axios';
 import { loadHabits } from './store';
 import Habits from './Habits';
+import CreateHabit from './CreateHabit';
 
 const Main = connect(
    (state) => {
@@ -33,7 +34,6 @@ const Main = connect(
         this.setState({ habits });
     }
 
-
     // update method
     async update(habit) {
         await axios.put(`/api/habits/${habit.id}`);
@@ -43,7 +43,9 @@ const Main = connect(
         return (
             <div id='main'>
                 <h1>Self Care Habit Tracker</h1>
+                <CreateHabit />
                 <Habits />
+                
             </div>
         );
     }

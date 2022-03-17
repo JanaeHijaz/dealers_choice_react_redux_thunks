@@ -1,28 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { deleteHabit } from './store';
+import { updateHabit } from './store';
 
-const Habits = ({ habits }) => {
+const Habits = ({ habits, update }) => {
     
     return (
         <div>
+            <ul>
           {habits.map(habit => {
                 return (
-                 <div key={habit.id}>
-                    <div>
+                 <li 
+                 onClick={ ()=> update(habit)} key={ habit.id } className={ habit.completed ? 'completed': ''}> 
                     {habit.habitName}
-                    <button onClick={ () => deleteHabit(habit) }> x </button>
-                    </div>
-                </div>
-                )
-            })}   
+                        <button onClick={ () => deleteHabit(habit) }>
+                        x 
+                        </button> 
+                </li>
+                );
+            })}  
+            </ul> 
         </div>
     )
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        update: (habit) => {
+            dispatch(updateHabit(habit));
+        }
     }
 }
 
