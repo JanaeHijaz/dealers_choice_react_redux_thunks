@@ -5,10 +5,9 @@ const path = require('path');
 
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 app.get('/', (req, res)=> res.sendFile(path.join(__dirname, 'index.html')));
-app.use(express.json()); // body parser?
+app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public'))); // do I need this? 
 
-// ------ ROUTES HERE -------------
 
 // GET API route to view all habits
 app.get('/api/habits', async(req, res, next) => {
@@ -22,7 +21,6 @@ app.get('/api/habits', async(req, res, next) => {
 });
 
 // POST API route to enter a new habit
-
 app.post('/api/habits', async(req, res, next) => {
     try{
         
@@ -34,7 +32,6 @@ app.post('/api/habits', async(req, res, next) => {
 });
 
 // PUT API route to update/modify a habit (if completed) 
-
 app.put('/api/habits/:id', async(req, res, next) => {
     try {
         const habit = await Habit.findByPk(req.params.id);

@@ -8,9 +8,7 @@ const LOAD_HABITS = 'LOAD_HABITS';
 const DELETE_HABIT = 'DELETE_HABIT';
 const UPDATE_HABIT = 'UPDATE_HABIT';
 
-const initialState = {
-    habits: []
-}
+// ------ comebineReducer -------
 
 const habitsReducer = (habits =[], action) => {
 if (action.type === LOAD_HABITS){
@@ -29,7 +27,8 @@ if (action.type === UPDATE_HABIT){
 }
 const reducer = combineReducers({habits: habitsReducer});
 
-// purpose: get the habits from the server and dispatch it to the store
+// -----thunks-------
+
 const loadHabits = () => {
     return async function(dispatch){
         const habits = (await axios.get('/api/habits')).data;
