@@ -5,6 +5,8 @@ import store from './store';
 import { loadHabits } from './store';
 import Habits from './Habits';
 import CreateHabit from './CreateHabit';
+import Header from './Header';
+
 
 const Main = connect(
    (state) => {
@@ -28,6 +30,7 @@ const Main = connect(
         return (
             <div id='main'>
                 <h1>Self Care Habit Tracker</h1>
+                <Header />
                 <CreateHabit />
                 <Habits />
                 
