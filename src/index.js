@@ -14,12 +14,12 @@ class Main extends React.Component {
      super()
      this.state = {
          habits: [],
-         //name: ''
+         name: ''
      };
      this.create = this.create.bind(this);
     }
 
-    async componentDidMount(){
+    async componentDidMount(){ // this is LOADING
         const response = await axios.get('/api/habits');
         const habits = response.data;
         this.setState({habits: habits});
@@ -30,16 +30,22 @@ class Main extends React.Component {
         const response = await axios.post('/api/habits');
         const newHabit = response.data;
         const habits = [...this.state.habits, newHabit];
-        console.log(this.state)
+        console.log(newHabit)
         this.setState({ habits });
     }
+
     // delete method
     async delete(habit) {
         await axios.delete(`/api/habits/${habit.id}`);
         const habits = this.state.habits.filter(_habit => _habit.id !== habit.id);
         this.setState({ habits });
     };
+
     // update method
+    async update(habit) {
+        await axios.put(`/api/habits/${habit.id}`);
+         
+    }
 
     render() {
         return (
@@ -64,5 +70,9 @@ class Main extends React.Component {
 }
 
 
-render( <Main />, 
+render( 
+    <Provider store={ store }>
+    <Main />
+    </Provider>
+    , 
 document.querySelector('#root'));

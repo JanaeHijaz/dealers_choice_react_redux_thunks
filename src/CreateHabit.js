@@ -9,18 +9,25 @@ class CreateHabit extends Component {
         };
     }
 
+    // maybe move create function here?
+
 render(){
     return (
         <form>
-            <input value={this.state.name} onChange={ ev => this.setState({ name: ev.target.value })}/>
-            <button onClick={ ()=> this.props.create(this.state.name)}> Add New Habit</button>
+            {/*<input value={this.state.name} onChange={ ev => this.setState({ name: ev.target.value })}/> */}
+            <input type="text" id="habit" name="habit"/>
+            <button onClick={ ()=> this.create(this.state.name)}> Add New Habit</button>
         </form>
         );
     }
-
 }
 
-// const CreateHabit = (props) => {
+export default CreateHabit; 
+
+
+
+
+// const CreateHabit = (props) => 
 //     const habits = props.habits
 //      const name = props.name;
 //      const create = props.create;
@@ -34,4 +41,3 @@ render(){
 //  }
 
 
-export default CreateHabit; 
