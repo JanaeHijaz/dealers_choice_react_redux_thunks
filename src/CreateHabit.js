@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 
 class CreateHabit extends Component {
@@ -22,7 +23,13 @@ render(){
     }
 }
 
-export default CreateHabit; 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        // finish this
+    }
+}
+
+export default connect(null, mapDispatchToProps)(CreateHabit); 
 
 
 
