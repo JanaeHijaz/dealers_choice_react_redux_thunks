@@ -26,18 +26,18 @@ const Main = connect(
     }
 
     // create method
-    async create(){
-        const response = await axios.post('/api/habits');
-        const newHabit = response.data;
-        const habits = [...this.state.habits, newHabit];
-        console.log(newHabit)
-        this.setState({ habits });
-    }
+    // async create(){
+    //     const response = await axios.post('/api/habits');
+    //     const newHabit = response.data;
+    //     const habits = [...this.state.habits, newHabit];
+    //     console.log(newHabit)
+    //     this.setState({ habits });
+    // }
 
     // update method
-    async update(habit) {
-        await axios.put(`/api/habits/${habit.id}`);
-    }
+    // async update(habit) {
+    //     await axios.put(`/api/habits/${habit.id}`);
+    // }
 
     render() {
         return (
