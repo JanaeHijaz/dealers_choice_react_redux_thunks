@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import { deleteHabit } from './store';
 
 const Habits = ({ habits }) => {
     
@@ -11,7 +11,7 @@ const Habits = ({ habits }) => {
                  <div key={habit.id}>
                     <div>
                     {habit.habitName}
-                    <button onClick={ () => this.delete(habit) }> x </button>
+                    <button onClick={ () => deleteHabit(habit) }> x </button>
                     </div>
                 </div>
                 )

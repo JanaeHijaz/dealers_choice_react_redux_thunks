@@ -33,12 +33,6 @@ const Main = connect(
         this.setState({ habits });
     }
 
-    // delete method
-    async delete(habit) {
-        await axios.delete(`/api/habits/${habit.id}`);
-        const habits = this.state.habits.filter(_habit => _habit.id !== habit.id);
-        this.setState({ habits });
-    };
 
     // update method
     async update(habit) {

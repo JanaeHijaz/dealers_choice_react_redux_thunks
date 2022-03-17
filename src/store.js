@@ -20,7 +20,7 @@ if (action.type === CREATE_HABIT){
     return [...habits, action.habits];
 }
 if (action.type === DELETE_HABIT){
-    return 
+    return habits.filter(habit => habit.id !== action.habit.id)
 }
 if (action.type === UPDATE_HABIT){
     return habits.map(habit => habit.id === action.habit.id ? action.habit : habit);
@@ -36,11 +36,23 @@ const loadHabits = () => {
         dispatch({ type: LOAD_HABITS, habits });
     }
 };
+
+const createHabit = () => {
+
+};
+
+const deleteHabit = async(habit) => {
+    await axios.delete(`/api/habits/${habit.id}`);
+    store.dispatch({ type: DELETE_HABIT, habit});
+};
+
 const store = createStore(reducer, applyMiddleware(thunks));
 
 export default store; 
 export {
-    loadHabits
+    loadHabits,
+    createHabit,
+    deleteHabit
 }
 
 window.store = store;
